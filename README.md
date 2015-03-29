@@ -1,2 +1,2 @@
 # OMH
-OfflineModpackHelper
+Offline Modpack Helper
