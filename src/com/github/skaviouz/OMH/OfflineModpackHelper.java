@@ -1,25 +1,85 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+ Version 2, December 2004 
+
+ Copyright (C) 2004 Sam Hocevar <sam@hocevar.net> 
+
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+
+ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+
+ 0. You just DO WHAT THE FUCK YOU WANT TO.
  */
 package com.github.skaviouz.OMH;
 
+import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+import javax.swing.JViewport;
+import javax.swing.UIManager;
 
 /**
  *
- * @author Eric
+ * @author skaviouz
  */
 public class OfflineModpackHelper extends javax.swing.JFrame {
+
+    public static OfflineModpackHelper self = null;
 
     /**
      * Creates new form OfflineModpackHelper
      */
     public OfflineModpackHelper() {
+        self = this;
+        UIManager.put("TabbedPane.contentOpaque", false);
         initComponents();
+        jScrollPane1.getViewport().setOpaque(false);
+        jScrollPane1.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(final AdjustmentEvent e) {
+                self.repaint();
+            }
+        });
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(final AdjustmentEvent e) {
+                self.repaint();
+            }
+        });
+        jScrollPane2.getViewport().setOpaque(false);
+        jScrollPane2.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(final AdjustmentEvent e) {
+                self.repaint();
+            }
+        });
+        jScrollPane2.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(final AdjustmentEvent e) {
+                self.repaint();
+            }
+        });
     }
-    
+
     public void EXIT() {
         System.exit(0);
     }
@@ -33,19 +93,281 @@ public class OfflineModpackHelper extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel6 = new BackgroundPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jPanel1 = new BackgroundPanel();//javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2MM = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
+        jButton1Changelog = new javax.swing.JButton();
+        jButton2Home = new javax.swing.JButton();
+        jButton3FAQ = new javax.swing.JButton();
+        jPanel3FAQ = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jComboBox2 = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         EXITjMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
+        jToolBar1.setRollover(true);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Information");
+
+        jButton5.setText("Thanks for the information");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Offline Modpack Helper");
         setAutoRequestFocus(false);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("test.png"))
+        setIconImage(Icon());
+
+        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
+
+        jPanel2MM.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
+
+        jTextArea1.setBackground(new java.awt.Color(100, 200, 100, 50));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 102, 0));
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("You've awoken from slumber once more, but this time things seem a little different. The World itself appears dead around you, a wasteland stretching off into the distance, dotted by the skeletons of trees, accompanied only by grey boulders. Ever more curiously, the world itself seems barren. Try as you might, you cannot find a single deposit of minerals underground, leaving you to wonder what to make of this world. As you look around you wonder what it will take to survive here and how you might help the world recover...\n");
+        jTextArea1.setToolTipText("");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextArea1CaretUpdate(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Table of Contents"));
+        jPanel4.setOpaque(false);
+
+        jButton1Changelog.setText("Changelog (requires internet)");
+        jButton1Changelog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ChangelogActionPerformed(evt);
+            }
+        });
+
+        jButton2Home.setText("Home");
+        jButton2Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2HomeActionPerformed(evt);
+            }
+        });
+
+        jButton3FAQ.setText("FAQ");
+        jButton3FAQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3FAQActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1Changelog, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+            .addComponent(jButton2Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton3FAQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jButton2Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1Changelog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3FAQ)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/omh/textures/gui/regrowth-cover.png"))); // NOI18N
+        javax.swing.GroupLayout jPanel2MMLayout = new javax.swing.GroupLayout(jPanel2MM);
+        jPanel2MM.setLayout(jPanel2MMLayout);
+        jPanel2MMLayout.setHorizontalGroup(
+            jPanel2MMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2MMLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2MMLayout.setVerticalGroup(
+            jPanel2MMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Main Menu", jPanel2MM);
+
+        jPanel3FAQ.setOpaque(false);
+
+        jScrollPane2.setOpaque(false);
+
+        jPanel2.setOpaque(false);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Bugs"));
+        jPanel3.setOpaque(false);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NEI", "Lexica Botania (Alfheim Edition)", "Mobs spawning in lit areas", "Fish Feeder" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jComboBox1, 0, 338, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Getting Started"));
+        jPanel5.setOpaque(false);
+
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane3.setOpaque(false);
+
+        jTextArea2.setBackground(new java.awt.Color(100, 200, 100, 50));
+        jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Most, if not all, of the custom mechanics are covered in the Quest Book. Be sure to read both pages thoroughly! Additionally, there are many recipe changes in the pack, so be sure to reference NEI as well.");
+        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextArea2CaretUpdate(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTextArea2);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What is this dirty water? Is it dangerous?", "How do I get grass blocks?", "How do I get long/tall grass?", "How do I get saplings?", "How do I get mushrooms?", "I died and now I have a potion effect \"Soul Fray\" - what is that?" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+            .addComponent(jComboBox2, 0, 338, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 313, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(jPanel2);
+
+        javax.swing.GroupLayout jPanel3FAQLayout = new javax.swing.GroupLayout(jPanel3FAQ);
+        jPanel3FAQ.setLayout(jPanel3FAQLayout);
+        jPanel3FAQLayout.setHorizontalGroup(
+            jPanel3FAQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+        );
+        jPanel3FAQLayout.setVerticalGroup(
+            jPanel3FAQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("FAQ", jPanel3FAQ);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
 
         jMenu1.setText("File");
 
@@ -69,13 +391,11 @@ public class OfflineModpackHelper extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 79, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -85,33 +405,153 @@ public class OfflineModpackHelper extends javax.swing.JFrame {
         EXIT();
     }//GEN-LAST:event_EXITjMenuItemActionPerformed
 
+    private void jButton2HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2HomeActionPerformed
+        jTextArea1.setText("You've awoken from slumber once more, but this time things seem a little different. The World itself appears dead around you, a wasteland stretching off into the distance, dotted by the skeletons of trees, accompanied only by grey boulders. Ever more curiously, the world itself seems barren. Try as you might, you cannot find a single deposit of minerals underground, leaving you to wonder what to make of this world. As you look around you wonder what it will take to survive here and how you might help the world recover...");
+    }//GEN-LAST:event_jButton2HomeActionPerformed
+
+    private void jButton1ChangelogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ChangelogActionPerformed
+        String str = "";
+        try {
+            str = getUrlSource("https://www.dropbox.com/s/ikba12l37lq33kr/changelogs.txt?dl=0");
+        } catch (IOException ex) {
+            StringWriter sw = new StringWriter();
+            ex.printStackTrace(new PrintWriter(sw));
+            jTextArea1.setText(sw.toString());
+        }
+        int start = str.indexOf("https://dl.dropboxusercontent.com/content_link_htmlify/");
+        int end = str.indexOf("\" style=\"visibility:", start);
+        try {
+            str = getUrlSource(str.substring(start, end));
+        } catch (IOException ex) {
+            StringWriter sw = new StringWriter();
+            ex.printStackTrace(new PrintWriter(sw));
+            jTextArea1.setText(sw.toString());
+        }
+        start = str.indexOf("0.3.1");
+        end = str.lastIndexOf("</pre>");
+        str = str.substring(start, end);
+        jTextArea1.setText(str);
+    }//GEN-LAST:event_jButton1ChangelogActionPerformed
+
+    private void jButton3FAQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3FAQActionPerformed
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton3FAQActionPerformed
+
+    private void jTextArea1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextArea1CaretUpdate
+        self.repaint();
+    }//GEN-LAST:event_jTextArea1CaretUpdate
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        switch (jComboBox1.getSelectedIndex()) {
+            case 0:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "If you load a world, everything is fine.\n"
+                        + "Exiting to main menu or switching servers through a hub causes NEI crashes.\n\n"
+                        + "It is a known issue with Modtweaker.\n"
+                        + "Workaround: Reload the client each time you connect to different world/server.",
+                        "NEI CRASHES",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "This is because Enchiridion 2 expects the original Lexica Botania to be opened prior to the Alfheim Edition.\n\n"
+                        + "Workaround: Craft a plain Lexica Botania first and open it prior to using your Alfheim Edition.",
+                        "Crash when opening the Lexica Botania (Alfheim Edition)",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "This appears to be a bug in Enderzoo.\n\n"
+                        + "NO workaround\n\n"
+                        + "to disable Direwolves entirely, edit minecraft/config/enderzoo/EnderZoo.cfg and setting B:direWolfEnabled=false",
+                        "Dire Wolves spawn in lit areas",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "Workaround: Remove the fish and place them back into the Fish Feeder.",
+                        "Fish Feeder tank size does not report correctly / the Fish Feeder does not accept fish food",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            default:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "There isn't any information on this bug at this time.",
+                        "No info.",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+        }
+        System.out.println(jComboBox1.getSelectedIndex());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        switch (jComboBox2.getSelectedIndex()) {
+            case 0:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "This is normal water in the wasteland biome.\n"
+                        + "It is not dangerous, just ugly.",
+                        "What is this dirty water? Is it dangerous?",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "Use a pasture seed on dirt blocks.\n"
+                        + "You can also find random grass blocks in the wild.",
+                        "How do I get grass blocks?",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "Use bone meal on grass blocks.",
+                        "How do I get long/tall grass?",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "Use mutandis on long/tall grass.",
+                        "How do I get saplings?",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "Use mutandis on long grass or find them in caves or the Nether.\n"
+                        + "Mushroom spores are also a quest reward, but these must be grown on mycellium.",
+                        "How do I get mushrooms?",
+                        JOptionPane.PLAIN_MESSAGE);
+            case 5:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "This is from Blood Magic\n"
+                        + "it prevents you from self-sacrificing yourself to death repeatedly.\n"
+                        + "Otherwise, it has no effect.",
+                        "I died and now I have a potion effect \"Soul Fray\" - what is that?",
+                        JOptionPane.PLAIN_MESSAGE);
+            case 6:
+            case 7:
+            default:
+                JOptionPane.showMessageDialog(jDialog1,
+                        "There isn't any information on this entry at this time.",
+                        "No info.",
+                        JOptionPane.PLAIN_MESSAGE);
+                break;
+        }
+        System.out.println(jComboBox1.getSelectedIndex());
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextArea2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextArea2CaretUpdate
+        this.repaint();
+    }//GEN-LAST:event_jTextArea2CaretUpdate
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OfflineModpackHelper.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OfflineModpackHelper.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OfflineModpackHelper.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OfflineModpackHelper.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -120,11 +560,66 @@ public class OfflineModpackHelper extends javax.swing.JFrame {
         });
     }
 
+    public java.awt.Image Icon() {
+        return Image("./src/assets/omh/textures/gui/regrowth-Hicon.png");
+    }
+
+    public java.awt.Image Image(String str) {
+        try {
+            return ImageIO.read(new File(str));
+        } catch (IOException ex) {
+            Logger.getLogger(BackgroundPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String str2 = "./src/assets/omh/textures/gui/regrowth.png";
+        try {
+            return (str.equals(str2)) ? null : ImageIO.read(new File(str));
+        } catch (IOException ex) {
+            Logger.getLogger(OfflineModpackHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    private static String getUrlSource(String url) throws IOException {
+        URL yahoo = new URL(url);
+        URLConnection yc = yahoo.openConnection();
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                yc.getInputStream(), "UTF-8"));
+        String inputLine;
+        StringBuilder a = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            a.append(inputLine + "\n");
+        }
+        in.close();
+
+        return a.toString();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EXITjMenuItem;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton1Changelog;
+    private javax.swing.JButton jButton2Home;
+    private javax.swing.JButton jButton3FAQ;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel2MM;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel3FAQ;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
